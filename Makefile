@@ -1,5 +1,5 @@
 NAME = push_swap
-SRCS = src/push_swap.c includes/ft_atoi.c includes/ft_strcmp.c src/stacks.c src/rules1.c src/rules2.c src/rules3.c src/function1.c src/push_atb.c
+SRCS = src/push_swap.c includes/ft_atoi.c includes/ft_strcmp.c src/stacks.c src/rules1.c src/rules2.c src/rules3.c src/push_bta.c src/push_atb.c src/ft_aid_fun.c
 OBJ_PATH  = objs
 CC = cc
 
