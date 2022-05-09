@@ -12,10 +12,10 @@
 
 #include "../includes/push_swap.h"
 
-void	ft_init(int argc, char **argv, t_pushswap_data *psdata)
+void	ft_init(int argc, int *numbers, t_pushswap_data *psdata)
 {
 	psdata->argc = argc;
-	psdata->stack_a = ft_stack_a(argc, argv);
+	psdata->stack_a = ft_stack_a(argc - 1, numbers);
 	psdata->stack_b = NULL;
 	psdata->stack_a->index = -1;
 	psdata->len_a = argc - 1;
@@ -27,10 +27,17 @@ void	ft_init(int argc, char **argv, t_pushswap_data *psdata)
 int	main(int argc, char **argv)
 {
 	t_pushswap_data	psdata;
+	int				*numbers;
 
-	ft_check_input(argc, argv);
-	ft_init(argc, argv, &psdata);
-	ft_index_stack_a(&psdata);
+	numbers = ft_check_input(argc, argv);
+	ft_init(argc, numbers, &psdata);
+	ft_prepare_stack_a(&psdata, numbers);
 	ft_push_atb(&psdata);
 	ft_push_bta(&psdata);
+	// t_psnode *temp = psdata.stack_a;
+	// while(temp)
+	// {
+	// 	printf("%d\n", temp->index);
+	// 	temp = temp->next;
+	// }
 }

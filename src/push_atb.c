@@ -29,6 +29,8 @@ void	ft_get_facture(t_pushswap_data *psdata)
 void	ft_push_atb_aid(t_pushswap_data *psdata, int *swap_len, \
 		int *swap_max, int *facture)
 {
+	t_psnode *temp;
+
 	while (*swap_len < *swap_max)
 	{
 		if (psdata->stack_a->index < *swap_max)
@@ -46,8 +48,27 @@ void	ft_push_atb_aid(t_pushswap_data *psdata, int *swap_len, \
 			psdata->len_b++;
 		}
 		else
-			ft_rotate_a(&psdata->stack_a);
+		{
+			temp = psdata->stack_a;
+			while(temp->next)
+				temp = temp->next;
+			if(temp->index < *swap_max)
+				ft_rra(&psdata->stack_a);
+			else
+				ft_rotate_a(&psdata->stack_a);
+		}
 	}
+}
+
+int	ft_is_sorted(t_psnode *stack_a)
+{
+	while(stack_a)
+	{
+		if(stack_a->next && (stack_a->index > stack_a->next->index))
+			return (1);
+		stack_a = stack_a->next;
+	}
+	return (0);
 }
 
 void	ft_push_atb(t_pushswap_data *psdata)
@@ -57,11 +78,18 @@ void	ft_push_atb(t_pushswap_data *psdata)
 	int	facture;
 
 	swap_len = 0;
-	while (psdata->len_a)
+	while (psdata->len_a > 3 && ft_is_sorted(psdata->stack_a))
 	{
 		ft_get_facture(psdata);
-		swap_max = (psdata->len_a / psdata->facture) + swap_len + 1;
+		swap_max = ((psdata->len_a - 2) / psdata->facture) + swap_len + 1;
 		facture = swap_max - swap_len;
 		ft_push_atb_aid(psdata, &swap_len, &swap_max, &facture);
+	}
+	while(ft_is_sorted(psdata->stack_a))
+	{
+		if((psdata->stack_a->index > psdata->stack_a->next->index))
+			ft_swap_a(&psdata->stack_a);
+		if(ft_is_sorted(psdata->stack_a))
+			ft_rra(&psdata->stack_a);
 	}
 }

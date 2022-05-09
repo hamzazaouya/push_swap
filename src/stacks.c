@@ -28,49 +28,24 @@ t_psnode	*ft_create_node(void)
 	return (node);
 }
 
-t_psnode	*ft_stack_a(int argc, char **argv)
+t_psnode	*ft_stack_a(int len, int *numbres)
 {
 	int			i;
 	t_psnode	*head;
 	t_psnode	*temp;
 
 	head = NULL;
-	if (argc > 1)
+	head = ft_create_node();
+	temp = head;
+	i = 0;
+	while (i < len)
 	{
-		head = ft_create_node();
-		temp = head;
-		i = 1;
-		while (i < argc)
-		{
-			temp->num = ft_atoi(argv[i]);
-			if (i != argc - 1)
-				temp->next = ft_create_node();
-			temp = temp->next;
-			i++;
-		}
+		temp->num = numbres[i];
+		if (i + 1 != len)
+			temp->next = ft_create_node();
+		temp = temp->next;
+		i++;
 	}
 	return (head);
 }
 
-void	ft_index_stack_a(t_pushswap_data *psdata)
-{
-	int			*aide_arr;
-	t_psnode	*temp;
-
-	temp = psdata->stack_a;
-	aide_arr = ft_fill_arr(psdata);
-	ft_sort_arr(aide_arr, psdata->len_a);
-	while (temp)
-	{
-		temp->index = ft_serch_arr(aide_arr, temp->num);
-		temp = temp->next;
-	}
-	free(aide_arr);
-}
-
-void	ft_rrr(t_psnode **stack_a, t_psnode **stack_b)
-{
-	ft_reverse_rotate(stack_a);
-	ft_reverse_rotate(stack_b);
-	write(1, "rrr\n", 4);
-}

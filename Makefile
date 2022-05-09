@@ -1,7 +1,10 @@
 NAME = push_swap
-SRCS = src/push_swap.c includes/ft_atoi.c includes/ft_strcmp.c src/stacks.c src/rules1.c src/rules2.c src/rules3.c src/push_bta.c src/push_atb.c src/ft_aid_fun.c
+SRCS = src/push_swap.c includes/ft_atoi.c includes/ft_strcmp.c src/stacks.c \
+		src/rules1.c src/rules2.c src/rules3.c src/push_bta.c src/push_atb.c src/ft_aid_fun.c \
+		src/check.c src/prepare_stack_a.c src/rules4.c
 OBJ_PATH  = objs
 CC = cc
+
 
 SRCS_OBJS := $(SRCS:.c=.o)
 

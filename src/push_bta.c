@@ -14,8 +14,11 @@
 
 void	ft_getpos_max(t_pushswap_data *psdata, t_psnode *temp, int i, int j)
 {
-	if (temp->index == psdata->maxs[j].num)
+	if (j == 1 && psdata->len_b == 1)
+			psdata->maxs[j].pos = 0;
+	else if (temp->index == psdata->maxs[j].num)
 	{
+		//printf("i = %d\n", i);
 		if (i > psdata->len_b / 2)
 		{
 			psdata->maxs[j].pos = psdata->len_b - (i - 1);

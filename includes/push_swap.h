@@ -42,7 +42,7 @@ typedef struct push_swap
 	t_psnode	*stack_b;
 }	t_pushswap_data;
 
-t_psnode	*ft_stack_a(int argc, char **argv);
+t_psnode	*ft_stack_a(int argc, int *numbers);
 int			ft_atoi(const char *str);
 void		ft_swap_a(t_psnode **stack_a);
 void		ft_swap_b(t_psnode **stack_b);
@@ -67,9 +67,7 @@ void		ft_getpos(t_pushswap_data *psdata);
 int			ft_strcmp(char *str1, char *str2);
 void		ft_rr(t_psnode **stack_a, t_psnode **stack_b);
 void		ft_get_maxes(t_pushswap_data *psdata);
-int			ft_serch_arr(int *arr, int num);
-void		ft_sort_arr(int *arr, int len);
-int			*ft_fill_arr(t_pushswap_data *psdata);
-void		ft_index_stack_a(t_pushswap_data *psdata);
-void		ft_check_input(int argc, char **argv);
+void		ft_prepare_stack_a(t_pushswap_data *psdata, int *numbers);
+int			*ft_check_input(int argc, char **argv);
+void		ft_error();
 #endif
