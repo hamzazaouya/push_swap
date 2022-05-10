@@ -37,11 +37,11 @@ void	ft_push_atb_aid(t_pushswap_data *psdata, int *swap_len, \
 		{
 			ft_push_b(&psdata->stack_a, &psdata->stack_b);
 			if (psdata->stack_b->index < (*swap_max - *facture / 2) \
-					&& psdata->len_b)
+					&& psdata->len_b > 5)
 				ft_rotate_b(&psdata->stack_b);
 			if (psdata->stack_b->next \
 					&& psdata->stack_b->next->index > \
-					psdata->stack_b->index)
+					psdata->stack_b->index && psdata->len_b > 5)
 				ft_swap_b(&psdata->stack_b);
 			(*swap_len)++;
 			psdata->len_a--;
